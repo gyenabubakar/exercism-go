@@ -1,18 +1,22 @@
 package cars
 
-// CalculateWorkingCarsPerHour calculates how many working cars are
-// produced by the assembly line every hour
+import "math"
+
+const carCost = 10000
+const costForGroupsOfTen = 95000
+
 func CalculateWorkingCarsPerHour(productionRate int, successRate float64) float64 {
-	panic("CalculateWorkingCarsPerHour not implemented")
+	return (successRate / 100) * float64(productionRate)
 }
 
-// CalculateWorkingCarsPerMinute calculates how many working cars are
-// produced by the assembly line every minute
 func CalculateWorkingCarsPerMinute(productionRate int, successRate float64) int {
-	panic("CalculateWorkingCarsPerMinute not implemented")
+	workingCarsPerHr := CalculateWorkingCarsPerHour(productionRate, successRate)
+	return int(workingCarsPerHr) / 60
 }
 
-// CalculateCost works out the cost of producing the given number of cars
 func CalculateCost(carsCount int) uint {
-	panic("CalculateCost not implemented")
+	tens := math.Floor(float64(carsCount) / 10)
+	ones := carsCount - (10 * int(tens))
+	cost := (int(tens) * costForGroupsOfTen) + (ones * carCost)
+	return uint(cost)
 }

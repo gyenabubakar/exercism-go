@@ -20,3 +20,5 @@
 
 # Exercism stuff
 .exercism/
+
+.DS_Store
